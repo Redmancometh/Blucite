@@ -7,6 +7,7 @@ import org.apache.poi.xwpf.usermodel.XWPFDocument;
 
 public class ReadDocx
 {
+
     public static void main(String[] args)
     {
         File file = null;
@@ -27,14 +28,12 @@ public class ReadDocx
             // fileData contains one continuous string that we will now begin parsing out the footnotes
             FootnoteExtractor fe = new FootnoteExtractor(fileData);
             String[] footnotes = fe.getFootnotes();
+            fis.close();
 
         }
         catch (Exception e)
         {
             e.printStackTrace();
-        }
-        finally {
-            fis.close();
         }
 
     }
