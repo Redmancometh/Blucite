@@ -1,14 +1,14 @@
 package com.redmancometh.blucite;
-import java.io.File;
 import java.util.Scanner;
-
-import com.redmancometh.blucite.io.DocXReader;
+import com.redmancometh.blucite.gui.MainWindow;
 public class Program
 {
 	static Scanner in = new Scanner(System.in);
 	public static void main(String[] strings)
 	{
-		File file = new File(strings[0]); //Will be from GUI later
+		MainWindow main = new MainWindow();
+		main.init();
+		/*File file = new File(strings[0]); //Will be from GUI later
 		DocXReader reader = new DocXReader(file);
 		if(!reader.doesExist())
 		{
@@ -19,7 +19,7 @@ public class Program
 		else
 		{
 			reader.readFile(file);
-		}
+		}*/
 	}
 
 }
