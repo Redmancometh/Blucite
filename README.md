@@ -1,2 +1,3 @@
 # Bluecite
-Can we use Whitesmiths' format.
+- GNU Style Formatting
+- Please use descriptive commit messages if possible
