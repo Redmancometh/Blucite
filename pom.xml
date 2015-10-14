@@ -32,33 +32,27 @@
 						<configuration>
 							<filters>
 								<filter>
-									<artifact>org.apache.poi:poi-ooxml</artifact>
-									<artifact>org.apache.tika:tika-core</artifact>
-									<artifact>org.apache.xmlbeans:xmlbeans</artifact>
-									<artifact>org.apache.poi:poi</artifact>
-									<artifact>org.apache.tika:tika-parser</artifact>
-									<artifact>commons-io:commons-io</artifact>
-									<includes>
-										<include>org.apache.poi:poi-ooxml</include>
-										<include>org.apache.tika:tika-core</include>
-										<include>org.apache.xmlbeans:xmlbeans</include>
-										<include>org.apache.poi:poi</include>
-										<include>org.apache.tika:tika-parser</include>
-										<include>commons-io:commons-io</include>
-									</includes>
-								</filter>
-								<filter>
 									<artifact>*:*</artifact>
+									<excludes>
+										<exclude>META-INF/*.SF</exclude>
+										<exclude>META-INF/*.DSA</exclude>
+										<exclude>META-INF/*.RSA</exclude>
+									</excludes>
 								</filter>
 							</filters>
 							<artifactSet>
 								<includes>
-									<include>org.apache.poi:poi-ooxml</include>
 									<include>org.apache.tika:tika-core</include>
 									<include>org.apache.xmlbeans:xmlbeans</include>
 									<include>org.apache.poi:poi</include>
-									<include>org.apache.tika:tika-parser</include>
+									<include>org.apache.tika:tika-parsers</include>
 									<include>commons-io:commons-io</include>
+									<include>org.apache.pdfbox:pdfbox</include>
+									<include>org.apache.pdfbox:fontbox</include>
+									<include>commons-logging:commons-logging</include>
+									<include>org.bouncycastle:bcprov-jdk15on</include>
+									<include>org.apache.poi:poi-ooxml</include>
+									<include>org.apache.logging.log4j:log4j-core</include>
 								</includes>
 							</artifactSet>
 						</configuration>
@@ -93,7 +87,12 @@
 		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi-ooxml</artifactId>
-			<version>3.7</version>
+			<version>3.9</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>3.9</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.tika</groupId>
@@ -101,19 +100,44 @@
 			<version>1.10</version>
 		</dependency>
 		<dependency>
-			<groupId>org.apache.xmlbeans</groupId>
-			<artifactId>xmlbeans</artifactId>
-			<version>2.6.0</version>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+			<version>2.4</version>
 		</dependency>
 		<dependency>
-			<groupId>org.apache.poi</groupId>
-			<artifactId>poi</artifactId>
-			<version>3.13</version>
+			<groupId>org.apache.pdfbox</groupId>
+			<artifactId>fontbox</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.pdfbox</groupId>
+			<artifactId>pdfbox</artifactId>
+			<version>1.8.10</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.tika</groupId>
 			<artifactId>tika-parsers</artifactId>
 			<version>1.4</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-excelant</artifactId>
+			<version>3.13</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+			<version>1.1.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.bouncycastle</groupId>
+			<artifactId>bcprov-jdk15on</artifactId>
+			<version>1.52</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.xmlbeans</groupId>
+			<artifactId>xmlbeans</artifactId>
+			<version>2.6.0</version>
 		</dependency>
 		<dependency>
 			<groupId>commons-io</groupId>
