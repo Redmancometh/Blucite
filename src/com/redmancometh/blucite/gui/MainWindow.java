@@ -1,9 +1,11 @@
 package com.redmancometh.blucite.gui;
+
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ConcurrentHashMap;
 
 import javax.swing.DefaultListModel;
@@ -16,6 +18,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 import com.redmancometh.blucite.io.constants.BluReader;
 import com.redmancometh.blucite.io.generics.DocReader;
+
 @SuppressWarnings("serial")
 public class MainWindow extends JFrame
 {
@@ -26,6 +29,7 @@ public class MainWindow extends JFrame
 	JButton selectDocument = new JButton("Select Document");
 	JButton viewDocument = new JButton("View Document");
 	JList list = new JList();
+
 	public void init()
 	{
 		mainWindow.setLayout(null);
@@ -36,7 +40,7 @@ public class MainWindow extends JFrame
 		mainWindow.setSize(800, 600);
 		mainWindow.setVisible(true);
 	}
-	
+
 	public void initFilters()
 	{
 		FileFilter[] filters = new FileFilter[5];
@@ -45,7 +49,7 @@ public class MainWindow extends JFrame
 		filters[2] = new FileNameExtensionFilter("Text File (.txt)", "txt");
 		filters[3] = new FileNameExtensionFilter("Old Word Format (.doc)", "doc");
 		filters[4] = new FileNameExtensionFilter("Portable Document Format (.pdf)", "pdf");
-		for(FileFilter inFilter : filters)
+		for (FileFilter inFilter : filters)
 		{
 			chooser.addChoosableFileFilter(inFilter);
 		}
@@ -94,33 +98,42 @@ public class MainWindow extends JFrame
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				chooser.showOpenDialog(rootPane);
-				File f = chooser.getSelectedFile();
-				if(f==null)
+				CompletableFuture.runAsync(() ->
 				{
-					return;
-				}
-				fileMap.put(f.getName(), f);
-				addToList(f.getName());
+					chooser.showOpenDialog(rootPane);
+					File f = chooser.getSelectedFile();
+					if (f == null)
+					{
+						return;
+					}
+					fileMap.put(f.getName(), f);
+					addToList(f.getName());
+				});
 			}
 		});
 		viewDocument.addActionListener(new ActionListener()
 		{
+
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				String fileName = (String) list.getSelectedValue();
-				if(fileName!=null)
+				CompletableFuture.runAsync(() ->
 				{
-					File f = getFileFromName((String) list.getSelectedValue());
-					DocReader reader = BluReader.getReader(f);  // No idea how to paramaterize types in ListModels
-					ViewFileWindow viewWindow = new ViewFileWindow(f.getName(), reader.readFile(f));
-					viewWindow.initWindow();
-				}
+					String fileName = (String) list.getSelectedValue();
+					if (fileName != null)
+					{
+						File f = getFileFromName((String) list.getSelectedValue());
+						DocReader reader = BluReader.getReader(f); 
+						ViewFileWindow viewWindow = new ViewFileWindow(f.getName(), reader.readFile(f));
+						viewWindow.initWindow();
+					}
+
+				});
 			}
+
 		});
 	}
-	
+
 	public File getFileFromName(String fileName)
 	{
 		return fileMap.get(fileName);

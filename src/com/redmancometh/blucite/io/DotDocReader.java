@@ -44,7 +44,6 @@ public class DotDocReader extends DocReader
 			try
 			{
 				fis.close();
-				extractor.close();
 			}
 			catch (IOException e)
 			{

@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+
 import org.apache.tika.parser.pdf.PDFParser;
 import org.apache.tika.metadata.Metadata;
 import org.apache.tika.parser.ParseContext;

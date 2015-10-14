@@ -18,7 +18,6 @@ public class DocXReader extends DocReader
 	@Override
 	public String readFile(File file)
 	{
-
 		XWPFWordExtractor extractor = null;
 		FileInputStream fis = null;
 		String fileData = null;
@@ -38,21 +37,6 @@ public class DocXReader extends DocReader
 		catch (Exception e)
 		{
 			e.printStackTrace();
-		}
-		finally
-		{
-			try
-			{
-				fis.close();
-				if (extractor != null)
-				{
-					extractor.close();
-				}
-			}
-			catch (IOException e)
-			{
-				e.printStackTrace();
-			}
 		}
 		return fileData;
 	}
