@@ -5,6 +5,7 @@ package com.redmancometh.blucite;
  */
 public class FootnoteExtractor
 {
+	@SuppressWarnings("unused")
 	private String text;
 
 	public FootnoteExtractor(String s)

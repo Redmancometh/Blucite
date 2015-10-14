@@ -7,7 +7,6 @@ import java.io.*;
 import org.apache.poi.xwpf.extractor.XWPFWordExtractor;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import com.redmancometh.blucite.io.generics.DocReader;
-
 public class DocXReader extends DocReader
 {
 
@@ -15,10 +14,11 @@ public class DocXReader extends DocReader
 	{
 		super(f);
 	}
-	
+
 	@Override
 	public String readFile(File file)
 	{
+
 		XWPFWordExtractor extractor = null;
 		FileInputStream fis = null;
 		String fileData = null;
@@ -31,9 +31,9 @@ public class DocXReader extends DocReader
 			fileData = extractor.getText();
 			// fileData contains one continuous string that we will now begin
 			// parsing out the footnotes
-			//FootnoteExtractor fe = new FootnoteExtractor(fileData);
-			//String[] footnotes = fe.getFootnotes();
-			//fis.close();
+			// FootnoteExtractor fe = new FootnoteExtractor(fileData);
+			// String[] footnotes = fe.getFootnotes();
+			// fis.close();
 		}
 		catch (Exception e)
 		{
@@ -44,7 +44,10 @@ public class DocXReader extends DocReader
 			try
 			{
 				fis.close();
-				extractor.close();
+				if (extractor != null)
+				{
+					extractor.close();
+				}
 			}
 			catch (IOException e)
 			{

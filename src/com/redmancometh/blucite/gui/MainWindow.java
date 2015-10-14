@@ -24,7 +24,7 @@ public class MainWindow extends JFrame
 	JFileChooser chooser = new JFileChooser();
 	JFrame mainWindow = new JFrame("BluCite");
 	JButton selectDocument = new JButton("Select Document");
-	JButton parseDocument = new JButton("Parse Document");
+	JButton viewDocument = new JButton("View Document");
 	JList list = new JList();
 	public void init()
 	{
@@ -39,11 +39,12 @@ public class MainWindow extends JFrame
 	
 	public void initFilters()
 	{
-		FileFilter[] filters = new FileFilter[4];
+		FileFilter[] filters = new FileFilter[5];
 		filters[0] = new FileNameExtensionFilter("New Word Format (.docx)", "docx");
 		filters[1] = new FileNameExtensionFilter("PDF File (.pdf)", "pdf");
 		filters[2] = new FileNameExtensionFilter("Text File (.txt)", "txt");
 		filters[3] = new FileNameExtensionFilter("Old Word Format (.doc)", "doc");
+		filters[4] = new FileNameExtensionFilter("Portable Document Format (.pdf)", "pdf");
 		for(FileFilter inFilter : filters)
 		{
 			chooser.addChoosableFileFilter(inFilter);
@@ -81,8 +82,8 @@ public class MainWindow extends JFrame
 	public void initButtons()
 	{
 		selectDocument.setBounds(30, 50, 150, 30);
-		parseDocument.setBounds(30, 80, 150, 30);
-		mainWindow.getContentPane().add(parseDocument);
+		viewDocument.setBounds(30, 80, 150, 30);
+		mainWindow.getContentPane().add(viewDocument);
 		mainWindow.getContentPane().add(selectDocument);
 	}
 
@@ -103,7 +104,7 @@ public class MainWindow extends JFrame
 				addToList(f.getName());
 			}
 		});
-		parseDocument.addActionListener(new ActionListener()
+		viewDocument.addActionListener(new ActionListener()
 		{
 			@Override
 			public void actionPerformed(ActionEvent e)
@@ -113,7 +114,8 @@ public class MainWindow extends JFrame
 				{
 					File f = getFileFromName((String) list.getSelectedValue());
 					DocReader reader = BluReader.getReader(f);  // No idea how to paramaterize types in ListModels
-					System.out.println(reader.readFile(f));
+					ViewFileWindow viewWindow = new ViewFileWindow(f.getName(), reader.readFile(f));
+					viewWindow.initWindow();
 				}
 			}
 		});

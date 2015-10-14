@@ -4,11 +4,12 @@ import java.lang.reflect.InvocationTargetException;
 import org.apache.commons.io.FilenameUtils;
 import com.redmancometh.blucite.io.DocXReader;
 import com.redmancometh.blucite.io.DotDocReader;
+import com.redmancometh.blucite.io.PDFReader;
 import com.redmancometh.blucite.io.TxtReader;
 import com.redmancometh.blucite.io.generics.DocReader;
 public enum BluReader
 {
-	TXT(TxtReader.class, "txt"), DOC(DotDocReader.class, "doc"), DOCX(DocXReader.class, "docx");
+	TXT(TxtReader.class, "txt"), DOC(DotDocReader.class, "doc"), DOCX(DocXReader.class, "docx"), PDF(PDFReader.class, "pdf");
 	private String extension;
 	private Class type;
 	BluReader(Class c, String extension)
