@@ -16,7 +16,7 @@ public enum BluReader
 		this.type=c; 
 		this.extension=extension;
 	}
-	
+		
 	public static DocReader getReader(File f)
 	{
 		for(BluReader r : BluReader.values())
