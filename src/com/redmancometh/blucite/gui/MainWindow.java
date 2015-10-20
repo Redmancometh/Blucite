@@ -28,6 +28,7 @@ public class MainWindow extends JFrame
 	JFrame mainWindow = new JFrame("BluCite");
 	JButton selectDocument = new JButton("Select Document");
 	JButton viewDocument = new JButton("View Document");
+	JButton preferencesButton = new JButton("Preferences");
 	JList list = new JList();
 
 	public void init()
@@ -87,8 +88,10 @@ public class MainWindow extends JFrame
 	{
 		selectDocument.setBounds(30, 50, 150, 30);
 		viewDocument.setBounds(30, 80, 150, 30);
+		preferencesButton.setBounds(30, 500, 150, 30);
 		mainWindow.getContentPane().add(viewDocument);
 		mainWindow.getContentPane().add(selectDocument);
+		mainWindow.getContentPane().add(preferencesButton);
 	}
 
 	public void setListeners()
@@ -113,7 +116,6 @@ public class MainWindow extends JFrame
 		});
 		viewDocument.addActionListener(new ActionListener()
 		{
-
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
@@ -127,11 +129,21 @@ public class MainWindow extends JFrame
 						ViewFileWindow viewWindow = new ViewFileWindow(f.getName(), reader.readFile(f));
 						viewWindow.initWindow();
 					}
-
 				});
 			}
-
 		});
+		preferencesButton.addActionListener(new ActionListener()
+		{
+			@Override
+			public void actionPerformed(ActionEvent e)
+			{
+				CompletableFuture.runAsync(() ->
+				{
+					
+				});
+			}
+		});
+
 	}
 
 	public File getFileFromName(String fileName)
